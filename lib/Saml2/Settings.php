@@ -122,11 +122,6 @@ class OneLogin_Saml2_Settings
      */
     private function _loadPaths($path = '')
     {
-        if ($path !== '') {
-            $this->_paths['config'] = $path;
-            $this->_paths['cert'] = $path.'certs/';
-            return;
-        }
         $basePath = dirname(dirname(dirname(__FILE__))).'/';
         $this->_paths = array (
             'base' => $basePath,
@@ -135,6 +130,12 @@ class OneLogin_Saml2_Settings
             'lib' => $basePath.'lib/',
             'extlib' => $basePath.'extlib/'
         );
+
+        if ($path !== '') {
+            $this->_paths['config'] = $path;
+            $this->_paths['cert'] = $path.'certs/';
+            return;
+        }
 
         if (defined('ONELOGIN_CUSTOMPATH')) {
             $this->_paths['config'] = ONELOGIN_CUSTOMPATH;
